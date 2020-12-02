@@ -1,10 +1,14 @@
+import VideoListEntry from './src/components/VideoListEntry.jsx';
+
+console.log(exampleVideoData);
 var VideoList = () => (
+
   <div className="video-list">
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
+    <div><h5><em>videoListEntry</em> <VideoListEntry video = {props[0]} /></h5></div>
+    <div><h5><em>videoListEntry</em> <VideoListEntry video = {props[1]} /></h5></div>
+    <div><h5><em>videoListEntry</em> <VideoListEntry video = {props[2]} /></h5></div>
+    <div><h5><em>videoListEntry</em> <VideoListEntry video = {props[3]} /></h5></div>
+    <div><h5><em>videoListEntry</em> <VideoListEntry video = {props[4]} /></h5></div>
   </div>
 );
 
