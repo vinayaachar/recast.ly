@@ -26,7 +26,6 @@ class App extends React.Component {
   }
 
   onTitleClick(e) {
-    console.log('event -> ', e.target.id);
     // retreive on click id
     // iterater over videoList
     // compare
