@@ -1,8 +1,9 @@
 
 // import exampleVideoData from './src/data/exampleVideoData.js';
+import App from './App.js';
 
 var VideoListEntry = (props) => {
-
+  console.log('videoListEntry props -> ', props);
 
   return (
     <div className="video-list-entry media">
@@ -10,7 +11,7 @@ var VideoListEntry = (props) => {
         <img className="media-object" src= {props.video.snippet.thumbnails.default.url} alt="" />
       </div>
       <div className="media-body">
-        <div className="video-list-entry-title">{props.video.snippet.title}</div>
+        <div onClick = { (e) => props.onTitleClick(e)} id = {props.video.id.videoId} className="video-list-entry-title">{props.video.snippet.title}</div>
         <div className="video-list-entry-detail">{props.video.snippet.description}</div>
       </div>
     </div>

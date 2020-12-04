@@ -1,9 +1,10 @@
 import VideoListEntry from './VideoListEntry.js';
 
 var VideoList = (props) => {
+  // console.log('videoList props ->', props);
 
   var renderedData = props.videos.map( (cv) => {
-    return <VideoListEntry key = {cv.id.videoId} video = {cv}/>;
+    return <VideoListEntry onTitleClick = {props.onTitleClick} key = {cv.id.videoId} video = {cv}/>;
   } );
 
   return (
