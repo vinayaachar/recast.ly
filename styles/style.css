@@ -67,7 +67,7 @@ body {
 }
 
 .video-list-entry-title:hover {
-  color: #fafafa;
+  color: blue;
   cursor: pointer;
 }
 
