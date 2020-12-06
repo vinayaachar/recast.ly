@@ -1,10 +1,10 @@
-var Search = () => (
+var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" />
+    <input id = 'newForm' className="form-control" type="text" />
     <button className="btn hidden-sm-down">
-      <span className="glyphicon glyphicon-search"></span>
+      <span className="glyphicon glyphicon-search" onClick = {(e) => props.onSearchClick(e, document.getElementById('newForm').value)}></span>
     </button>
-  </div> 
+  </div>
 );
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope

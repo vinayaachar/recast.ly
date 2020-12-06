@@ -3,8 +3,8 @@
 import App from './App.js';
 
 var VideoListEntry = (props) => {
-  // console.log('videoListEntry props -> ', props);
-
+  // console.log('videoListEntry props -> ', props.video.snippet.title);
+  // var log = console.log('working');
   return (
     <div className="video-list-entry media">
       <div className="media-left media-middle">

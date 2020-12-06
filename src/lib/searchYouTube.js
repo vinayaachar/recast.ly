@@ -1,3 +1,4 @@
+import App from '../components/App.js';
 var searchYouTube = (options, callback) => {
   // TODO
 
@@ -11,7 +12,7 @@ var searchYouTube = (options, callback) => {
     videoEmbeddable: true
   })
     .done(function(data) {
-      console.log('Invoke callback here',data);
+    //  console.log('Invoke callback here', data);
       callback(data.items);
     })
     .fail(function(err) {

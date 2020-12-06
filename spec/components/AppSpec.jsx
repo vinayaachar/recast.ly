@@ -19,7 +19,7 @@ describe('App', function() {
   it('should be a stateful class component', function() {
     expect(React.Component.isPrototypeOf(App)).to.be.true;
   });
-
+  debugger;
   it('should render a single VideoPlayer component', function() {
     var videoPlayer = findRenderedDOMComponentWithClass(app, 'video-player');
     expect(videoPlayer).to.exist;
@@ -48,7 +48,7 @@ describe('App', function() {
     });
   });
 
-  xdescribe('when rendering live data from YouTube', function() {
+  describe('when rendering live data from YouTube', function() {
     var searchYouTubeStub;
 
     beforeEach(function() {

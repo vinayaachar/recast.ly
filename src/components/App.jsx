@@ -3,59 +3,82 @@ import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import Search from './Search.js';
 import VideoListEntry from './VideoListEntry.js';
-
-/*
-1. Make title onClick
-  Get the ID associated with the title
-  Loop through the exampleData array
-    compare onClick ID to exampleData[0] ID
-    this.setState(state => ({videoPlayer: exampleVideoData[index]}))
-
-
-*/
+import searchYouTube from '../lib/searchYouTube.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videoList: exampleVideoData,
-      videoPlayer: exampleVideoData[0]
+      isFlag: false,
+      videoList: [],
+      videoPlayer: {},
+      search: 'music'
     };
+    this.onSearch = this.onSearch.bind(this);
     this.onTitleClick = this.onTitleClick.bind(this);
+    this.loadSearch = this.loadSearch.bind(this);
+  }
+
+  loadSearch() {
+    searchYouTube({key: YOUTUBE_API_KEY, query: this.state.search,
+      max: 5}, (data) => this.setState({
+      videoList: data,
+      isFlag: true,
+      videoPlayer: data[0]
+    }));
+  }
+
+  componentDidMount() {
+    this.loadSearch();
+    // this.setState({videoPlayer: this.state.videoList[0]});
   }
 
   onTitleClick(e) {
-    // retreive on click id
-    // iterater over videoList
-    // compare
-    for (var i = 0; i < exampleVideoData.length; i++) {
-      if (e.target.id === exampleVideoData[i].id.videoId) {
+    var arraylist = this.state.videoList;
+    for (var i = 0; i < arraylist.length; i++) {
+      if (e.target.id === arraylist[i].id.videoId) {
+        console.log('e');
+
         this.setState({
-          videoPlayer: exampleVideoData[i]
+          videoPlayer: arraylist[i]
         });
       }
     }
-
   }
+
+  onSearch(e, string) {
+    e.preventDefault();
+    console.log('right here -> before  ', this.state.search);
+    this.setState({search: string}, this.loadSearch);
+    console.log('right here -> after  ', this.state.search);
+  }
+
   render() {
-    return (
-      <div>
-        <nav className="navbar">
-          <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> <Search/></h5></div>
-          </div>
-        </nav>
-        <div className="row">
-          <div className="col-md-7">
-            <div><h5><em>videoPlayer</em> <VideoPlayer video = {this.state.videoPlayer}/> </h5></div>
-          </div>
-          <div className="col-md-5">
-            <div><h5><em>videoList</em> <VideoList videos = {this.state.videoList} onTitleClick = {this.onTitleClick} /></h5></div>
+    console.log('this.state.videoPlayer ->', this.state.videoPlayer);
+    if (this.state.isFlag) {
+      return (
+        <div>
+          <nav className="navbar">
+            <div className="col-md-6 offset-md-3">
+              <div><h5><em>search</em> <Search onSearchClick = {this.onSearch}/></h5></div>
+            </div>
+          </nav>
+          <div className="row">
+            <div className="col-md-7">
+              <div className="video-player"><h5><em>videoPlayer</em><VideoPlayer video={this.state.videoPlayer}/></h5></div>
+            </div>
+            <div className="col-md-5">
+              <div><h5><em>videoList</em> <VideoList videos={this.state.videoList} onTitleClick = {this.onTitleClick} /></h5></div>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (<div>  is loading </div>);
+
+    }
   }
 }
 
