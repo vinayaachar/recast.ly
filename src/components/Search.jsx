@@ -5,6 +5,7 @@ var Search = (props) => (
       <span className="glyphicon glyphicon-search" onClick = {(e) => props.onSearchClick(e, document.getElementById('newForm').value)}></span>
     </button>
   </div>
+  //
 );
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
